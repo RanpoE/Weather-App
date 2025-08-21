@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Weather</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            overflow: hidden;
+            position: relative;
+            background-position: center;
+            background-image: url("assets/wallhaven-8okxgy.jpg");
+        }
+
+        /* Background overlay for depth */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Main container */
+        .weather-container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Temperature display */
+        .temperature {
+            font-size: 6rem;
+            font-weight: 200;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Day and date card */
+        .date-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin: 2rem auto;
+            width: fit-content;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .day {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.2rem;
+        }
+
+        .date {
+            font-size: 2rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Location and weather info */
+        .location {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 1.5rem 0;
+            letter-spacing: 0.5px;
+        }
+
+        .weather-condition {
+            font-size: 1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .humidity {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Time display */
+        .time-display {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Bottom dock icons */
+
+        /* Weather icon animation */
+        .weather-icon {
+            font-size: 3rem;
+            margin: 1rem 0;
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .temperature {
+                font-size: 4rem;
+            }
+
+            .date {
+                font-size: 1.5rem;
+            }
+
+            .location {
+                font-size: 1rem;
+            }
+
+            .time-display {
+                top: 1rem;
+                right: 1rem;
+                font-size: 0.8rem;
+                padding: 0.5rem 0.75rem;
+            }
+
+            .dock {
+                bottom: 1rem;
+                padding: 0.5rem 1rem;
+                gap: 1rem;
+            }
+
+            .dock-item {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="time-display" id="currentTime">00:00</div>
+
+    <div class="weather-container">
+        <div class="temperature" id="currentTemp">27°</div>
+
+        <div class="date-card">
+            <div class="day" id="currentDay">Tuesday</div>
+            <div class="date" id="currentDate">21</div>
+        </div>
+
+        <div class="location">CITY</div>
+
+        <div class="weather-icon">🌧️</div>
+
+        <div class="weather-condition">Rainy conditions</div>
+        <div class="humidity" id="currentHumid">Humidity 72%</div>
+    </div>
+
+    <script src="scripts/weather.js">
+    </script>
+</body>
+
+</html>
