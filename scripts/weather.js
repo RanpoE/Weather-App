@@ -50,4 +50,4 @@ updateDateTime();
 setInterval(updateDateTime, 60000);
 postData()
 // Interval every hour
-setInterval(postData, 6000 * 60)
+setInterval(postData, 60000 * 60)
