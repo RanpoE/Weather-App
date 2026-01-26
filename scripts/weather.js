@@ -1,6 +1,6 @@
 async function postData() {
-    const API_KEY = 'YOUR_API_KEY'
-    const COORD = 'YOUR_COORDINATES'
+    const API_KEY = 'API_KEY' // Get one on weatherapi.com
+    const COORD = 'LAT,LONG'
     const BASE_URL = 'http://api.weatherapi.com/v1/'
 
     try {
@@ -13,9 +13,10 @@ async function postData() {
         }
 
         const data = await response.json()
-        const { current: { temp_c, humidity } } = data;
+        const { current: { temp_c, humidity }, location: { name } } = data;
         document.getElementById('currentTemp').textContent = temp_c + '°'
         document.getElementById('currentHumid').textContent = humidity + '%';
+        document.getElementById('location').textContent = name;
     } catch (error) {
         console.log(error)
     }
