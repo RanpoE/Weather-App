@@ -1,6 +1,6 @@
 async function postData() {
     const API_KEY = 'API_KEY' // Get one on weatherapi.com
-    const COORD = 'LAT,LONG'
+    const COORD = 'LAT,LONG' // Latitude and Longitude of your current location.
     const BASE_URL = 'http://api.weatherapi.com/v1/'
 
     try {
